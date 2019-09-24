@@ -45,7 +45,6 @@ app.get("/game", function (req, res) {
     res.sendFile(__dirname + '/game.html');
 });
 
-
 app.post("/play", async (req, res) => {
     if (codes.length) {
         var type = req.body.type;
