@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title>X-JACKPOT</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style2.css">
+    <link rel="stylesheet" href="/css/style.scss">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="/dist/descrambler.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+<header>
+    <div class="fixed-header">
+        <div class="container-header">
+            <a href="/" class="logo">
+                <img src="https://listing.financex.io/img/logo-financex.svg" alt="FinanceX">
+            </a>
+            <div class="toggle-menu" id="toggle">
+                <button class="btn-toggle-menu open">
+                    <span class="icon-menu"></span>
+                </button>
+            </div>
+            <h2 class="title">X-JACKPOT</h2>
+        </div>
+    </div>
+</header>
+<main>
+    <section class="jackpot gift" id="gift">
+        <div class="block">
+            <div class="flexbox-jackpot">
+                <div class="jackpot-item module">
+                    <div class="icon-jackpot">
+                        <img src="images/apple-watch.jpg" alt="Apple Watch Series X">
+                    </div>
+                    <h5 class="title-item">Jackpot 1 - Apple Watch</h5>
+                    <div class="prize">
+                        <p class="jackpot">XXXXXXXX</p>
+                    </div>
+                    <button class="play jackpot btn-proces-apply" value="jackpot">Quay thưởng</button>
+                </div>
+                <div class="jackpot-item module">
+                    <div class="icon-jackpot">
+                        <img src="images/amazfit-bip.jpg" alt="Amazfit Bip">
+                    </div>
+                    <h5 class="title-item">Jackpot 2 - Amazfit Bip</h5>
+                    <div class="prize">
+                        <p class="first">XXXXXXXX</p>
+                    </div>
+                    <button class="play first btn-proces-apply" value="first">Quay thưởng</button>
+                </div>
+                <div class="jackpot-item module">
+                    <div class="icon-jackpot">
+                        <img src="images/mi-band-4.jpg" alt="Minband 4">
+                    </div>
+                    <h5 class="title-item">Jackpot 3 - Miband</h5>
+                    <div class="prize">
+                        <p class="second">XXXXXXXX</p>
+                    </div>
+                    <button class="play second btn-proces-apply" value="second">Quay thưởng</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        (function ($) {
+            $.fn.visible = function (partial) {
+                var $t = $(this),
+                    $w = $(window),
+                    viewTop = $w.scrollTop(),
+                    viewBottom = viewTop + $w.height(),
+                    _top = $t.offset().top,
+                    _bottom = _top + $t.height();
+                compareTop = partial === true ? _bottom : _top,
+                    compareBottom = partial === true ? _top : _bottom;
+
+                return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+            };
+        })(jQuery);
+        $(document).ready(function () {
+            $('.menu-toggler').click(function () {
+                $(this).parents('header').toggleClass('show');
+            })
+            var win = $(window);
+            var allMods = $(".module");
+            allMods.each(function (i, el) {
+                var el = $(el);
+                if (el.visible(true)) {
+                    // el.addClass("module-effect");
+                    setTimeout(() => el.addClass("module-effect"), 250 * i);
+                }
+            });
+            if (win.scrollTop() >= 56) {
+                $('.fixed-header').addClass('bgShow')
+            }
+            win.scroll(function (event) {
+                if (win.scrollTop() >= 56) {
+                    $('.fixed-header').addClass('bgShow');
+                } else {
+                    $('.fixed-header').removeClass('bgShow');
+                }
+                allMods.each(function (i, el) {
+                    var el = $(el);
+                    if (el.visible(true)) {
+                        setTimeout(() => el.addClass("module-effect"), 90 * i);
+                    }
+                });
+            });
+
+        })
+    </script>
+</main>
+</body>
+</html>

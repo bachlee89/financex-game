@@ -1,0 +1,186 @@
+<html>
+<head>
+    <title>Financex 2nd Game</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        $.extend($.fn.dataTable.defaults, {
+            searching: false,
+            // ordering: false
+        });
+        $(document).ready(function () {
+            var socket = io();
+            var count = 0;
+            socket.on('refresh players', function (players) {
+                $.each(players, function (index, player) {
+                    count++;
+                    var email_arr = player.email.split('@');
+                    var email = email_arr[0].substring(0, email_arr[0].length - 4) + '****' + '@' + email_arr[1]
+
+                    $('#list_players').append('<tr><td>' + count + '</td><td>' + email + '</td><td>' + player.code + '</td></tr>');
+                })
+                // $('#list_players').DataTable()
+                // $('#list_players').DataTable().fnClearTable;
+                // $('#list_players').DataTable().fnDraw;
+                // $('#equictntbl').DataTable().fnDestroy;
+                // $('#list_players').DataTable().fnDraw;
+                // $('#list_players').DataTable().page('last').draw('page');
+            });
+            socket.on('refresh count', function (count) {
+                $('#total_players').html('<strong>' + count + '</strong> bạn đang tham gia trò chơi')
+                $('#total_players strong').animate({color: 'red'}, 500);
+            });
+        });
+
+    </script>
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+<body>
+<header class="">
+    <div class="fixed-header bgShow">
+        <div class="contain-header">
+            <div class="header-brand">
+                <a href="/" class="logo">
+                    <img src="https://listing.financex.io/img/logo-financex.svg" alt="FinanceX">
+                </a>
+                <button type="button" class="menu-toggler">
+                    <span></span>
+                </button>
+            </div>
+            <nav class="navbar-fnx">
+                <ul class="list-nav">
+                    <li class="item-nav">
+                        <a href="#gift" class="link-nav">Quà tặng</a>
+                    </li>
+                    <li class="item-nav">
+                        <a href="#guide" class="link-nav">Hướng dẫn</a>
+                    </li>
+                    <li class="item-nav">
+                        <a href="/game" class="link-nav">Đuổi hình bắt chữ</a>
+                    </li>
+                    <li class="item-nav">
+                        <a href="/x-jackpot" class="link-nav">X Jackpot</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<main>
+
+    </div>
+    <section class="gift" id="gift">
+        <div class="block">
+            <h4 class="title-section module">Trải nghiệm FinanceX App nhận quà tặng đặc biệt</h4>
+            <div class="flexbox-jackpot">
+                <div class="jackpot-item module">
+                    <div class="icon-jackpot">
+                        <img src="images/apple-watch.jpg" alt="Apple Watch Series X">
+                    </div>
+                    <h5 class="title-item">Jackpot 1 - Apple Watch</h5>
+                </div>
+                <div class="jackpot-item module">
+                    <div class="icon-jackpot">
+                        <img src="images/amazfit-bip.jpg" alt="Amazfit Bip">
+                    </div>
+                    <h5 class="title-item">Jackpot 2 - Amazfit Bip</h5>
+                </div>
+                <div class="jackpot-item module">
+                    <div class="icon-jackpot">
+                        <img src="images/mi-band-4.jpg" alt="Minband 4">
+                    </div>
+                    <h5 class="title-item">Jackpot 3 - Miband</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="guide" id="guide">
+        <div class="block">
+            <h4 class="title-section module">Hướng dẫn</h4>
+            <div class="flexbox-guide">
+                <div class="user-guide module">
+                    <div class="guide-icon">
+                        <img src="images/iphonex.png" alt="Iphonex">
+                    </div>
+                </div>
+                <div class="qr-code module">
+                    <div class="guide-icon">
+                        <img src="images/qr-code.png" alt="Fiancex QR code"/>
+                    </div>
+                    <div class="play-game">
+                        <button class="btn-start-game" onclick="window.location='/x-jackpot'">Bắt đầu chơi</button>
+                    </div>
+                </div>
+                <div class="total-players module">
+                    <p id="total_players">Danh sách người đã tham gia</p>
+                    <table class="table table-player" id="list_players">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Mã số may mắn</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<script type="text/javascript">
+    (function ($) {
+        $.fn.visible = function (partial) {
+            var $t = $(this),
+                $w = $(window),
+                viewTop = $w.scrollTop(),
+                viewBottom = viewTop + $w.height(),
+                _top = $t.offset().top,
+                _bottom = _top + $t.height();
+            compareTop = partial === true ? _bottom : _top,
+                compareBottom = partial === true ? _top : _bottom;
+
+            return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+        };
+    })(jQuery);
+    $(document).ready(function () {
+        $('.menu-toggler').click(function () {
+            $(this).parents('header').toggleClass('show');
+        })
+        var win = $(window);
+        var allMods = $(".module");
+        allMods.each(function (i, el) {
+            var el = $(el);
+            if (el.visible(true)) {
+                // el.addClass("module-effect");
+                setTimeout(() => el.addClass("module-effect"), 250 * i);
+            }
+        });
+        if (win.scrollTop() >= 56) {
+            $('.fixed-header').addClass('bgShow')
+        }
+        win.scroll(function (event) {
+            if (win.scrollTop() >= 56) {
+                $('.fixed-header').addClass('bgShow');
+            } else {
+                $('.fixed-header').removeClass('bgShow');
+            }
+            allMods.each(function (i, el) {
+                var el = $(el);
+                if (el.visible(true)) {
+                    setTimeout(() => el.addClass("module-effect"), 90 * i);
+                }
+            });
+        });
+
+    })
+</script>
+</body>
+</html>
