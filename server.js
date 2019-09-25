@@ -19,10 +19,10 @@ app.use(bodyParser.urlencoded({
 }));
 // var util = require('util')
 var count = 0;
-var players = [];
-var winners = [];
-var emails = [];
-var codes = [];
+let players = [];
+let winners = [];
+let emails = [];
+let codes = [];
 app.use('/favicon.ico', express.static('images/fnx-favicon.png'));
 app.use('/images/fnx-app.jpg', express.static('images/fnx-app.jpg'));
 app.use('/images/apple-watch.jpg', express.static('images/apple-watch.jpg'));
@@ -109,10 +109,12 @@ setInterval(function () {
                     players.push(new_player)
                     codes.push(element.referralId)
                     refresh_count = true
-                    io.emit('refresh players', new_player);
+                    console.log('new players')
+                    io.emit('new players', new_player);
                 }
             });
             if (refresh_count) {
+                console.log('refresh count')
                 io.emit('refresh count', players.length);
             }
         } else {
@@ -120,7 +122,7 @@ setInterval(function () {
             io.emit('error');
         }
     });
-}, 100);
+}, 500);
 
 
 /*  This is auto initiated event when Client connects.  */
@@ -128,6 +130,7 @@ io.on('connection', function (socket) {
     console.log("A user is connected");
     get_player_data_from_api(function (res) {
         if (res) {
+            players = codes = [];
             players = res;
             players.forEach(function (player) {
                 emails.push(player.email)

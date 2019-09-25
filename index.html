@@ -18,19 +18,25 @@
             var socket = io();
             var count = 0;
             socket.on('refresh players', function (players) {
+                count = 0;
+                $('#list_players tbody').html('');
                 $.each(players, function (index, player) {
                     count++;
+                    var email = hide4DigitsEmail(player.email);
+                    $('#list_players tbody').append('<tr><td>' + count + '</td><td>' + email + '</td><td>' + player.referralId + '</td></tr>');
+                })
+            });
+
+            socket.on('new players', function (players) {
+                $.each(players, function (index, player) {
+                    count++;
+
                     var email = hide4DigitsEmail(player.email);
 
                     $('#list_players').append('<tr><td>' + count + '</td><td>' + email + '</td><td>' + player.referralId + '</td></tr>');
                 })
-                // $('#list_players').DataTable()
-                // $('#list_players').DataTable().fnClearTable;
-                // $('#list_players').DataTable().fnDraw;
-                // $('#equictntbl').DataTable().fnDestroy;
-                // $('#list_players').DataTable().fnDraw;
-                // $('#list_players').DataTable().page('last').draw('page');
             });
+
             socket.on('refresh count', function (count) {
                 $('#total_players').html('<strong>' + count + '</strong> bạn đang tham gia trò chơi')
                 $('#total_players strong').animate({color: 'red'}, 500);
@@ -119,8 +125,8 @@
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Mã số</th>
+                            <th scope="col" width="60%">Email</th>
+                            <th scope="col" width="30%">Mã số</th>
                         </tr>
                         </thead>
                         <tbody>
