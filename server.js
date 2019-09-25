@@ -27,7 +27,7 @@ app.use('/favicon.ico', express.static('images/fnx-favicon.png'));
 app.use('/images/fnx-app.jpg', express.static('images/fnx-app.jpg'));
 app.use('/images/apple-watch.jpg', express.static('images/apple-watch.jpg'));
 app.use('/images/qr-code.png', express.static('images/qr-code.png'));
-app.use('/images/iphonex.png', express.static('images/iphonex.png'));
+app.use('/images/demo-game.gif', express.static('images/demo-game.gif'));
 app.use('/images/amazfit-bip.jpg', express.static('images/amazfit-bip.jpg'));
 app.use('/images/mi-band-4.jpg', express.static('images/mi-band-4.jpg'));
 app.use('/main.js', express.static('main.js'));
