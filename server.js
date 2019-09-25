@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({
 var count = 0;
 var players = [];
 var winners = [];
+var emails = [];
 var codes = [];
 app.use('/favicon.ico', express.static('images/fnx-favicon.png'));
 app.use('/images/fnx-app.jpg', express.static('images/fnx-app.jpg'));
@@ -48,7 +49,14 @@ app.get("/game", function (req, res) {
 app.post("/play", async (req, res) => {
     if (codes.length) {
         var type = req.body.type;
-        io.emit('update prize', {type: type, code: get_prize()});
+        var code = get_prize();
+        var email = ''
+        players.forEach(function (player) {
+            if (player.referralId == code) {
+                email = player.email;
+            }
+        });
+        io.emit('update prize', {type: type, code: code, email: email});
         res.send('Success!');
     }
     else {
@@ -60,6 +68,12 @@ app.post("/play", async (req, res) => {
 app.post("/start", async (req, res) => {
     io.emit('start game', {});
     res.send('Started!');
+
+});
+
+app.post("/confirm", async (req, res) => {
+    io.emit('confirm winner', {});
+    res.send('Confirmed!');
 
 });
 
@@ -88,11 +102,12 @@ setInterval(function () {
         if (res) {
             var refresh_count = false;
             res.forEach(function (element) {
-                if (players.indexOf(element.email) == -1) {
+                if (emails.indexOf(element.email) == -1) {
                     var new_player = []
                     new_player.push(element)
-                    players.push(element.email)
-                    codes.push(element.code)
+                    emails.push(element.email)
+                    players.push(new_player)
+                    codes.push(element.referralId)
                     refresh_count = true
                     io.emit('refresh players', new_player);
                 }
@@ -113,9 +128,13 @@ io.on('connection', function (socket) {
     console.log("A user is connected");
     get_player_data_from_api(function (res) {
         if (res) {
+            players = res;
+            players.forEach(function (player) {
+                emails.push(player.email)
+            });
             console.log("refresh players");
-            io.emit('refresh players', res);
-            io.emit('refresh count', res.length);
+            io.emit('refresh players', players);
+            io.emit('refresh count', players.length);
         } else {
             console.log("error");
             io.emit('error');
@@ -127,7 +146,7 @@ var get_player_data_from_api = function (callback) {
 
     var apiKey = config.apiKey;
     var url = config.host;
-    request.post({
+    request.get({
         "headers": {
             'x-token': apiKey,
             "content-type": "application/json"

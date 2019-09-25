@@ -5,7 +5,7 @@
     // interval: interval between new random letters being added/removed. Default is 20. Min is 5. Max is 10000. Parameter is type safe.
     // charset: the character set to use. Optional. Default is 'all'.
     // uppercase: determines whether scrambled characters will be uppercase or lowercase. Optional. Boolean.Default is true.
-    $.fn.scramble = function (duration, interval, charset, uppercase, callback) {
+    $.fn.scramble = function (duration, interval, charset, uppercase, callback, data) {
         // duration: The time, in ms, over which the function is to execute.
         // If duration is not a valid number or outside min/max (200ms/2000ms), default duration (3000) will be used.
         // NOTE: isNaN does not operate consistently across browsers and browser support for Number.isInteger is poor. Until then, this mess is the best I can do to make the duration argument type-safe.
@@ -108,7 +108,7 @@
                 // Once all letters have been replaced, clear the setInterval passed in to this function.
                 if (this.spliceIteration === this.len) {
                     window.clearInterval(timer);
-                    callback();
+                    callback(data);
                 }
             };
         };

@@ -20,10 +20,9 @@
             socket.on('refresh players', function (players) {
                 $.each(players, function (index, player) {
                     count++;
-                    var email_arr = player.email.split('@');
-                    var email = email_arr[0].substring(0, email_arr[0].length - 4) + '****' + '@' + email_arr[1]
+                    var email = hide4DigitsEmail(player.email);
 
-                    $('#list_players').append('<tr><td>' + count + '</td><td>' + email + '</td><td>' + player.code + '</td></tr>');
+                    $('#list_players').append('<tr><td>' + count + '</td><td>' + email + '</td><td>' + player.referralId + '</td></tr>');
                 })
                 // $('#list_players').DataTable()
                 // $('#list_players').DataTable().fnClearTable;
@@ -62,9 +61,6 @@
                         <a href="#guide" class="link-nav">Hướng dẫn</a>
                     </li>
                     <li class="item-nav">
-                        <a href="/game" class="link-nav">Đuổi hình bắt chữ</a>
-                    </li>
-                    <li class="item-nav">
                         <a href="/x-jackpot" class="link-nav">X Jackpot</a>
                     </li>
                 </ul>
@@ -77,7 +73,7 @@
     </div>
     <section class="gift" id="gift">
         <div class="block">
-            <h4 class="title-section module">Trải nghiệm FinanceX App nhận quà tặng đặc biệt</h4>
+            <h4 class="title-section module">Quà tặng đặc biệt từ FinanceX</h4>
             <div class="flexbox-jackpot">
                 <div class="jackpot-item module">
                     <div class="icon-jackpot">
@@ -124,7 +120,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Mã số may mắn</th>
+                            <th scope="col">Mã số</th>
                         </tr>
                         </thead>
                         <tbody>
