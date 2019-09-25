@@ -8,16 +8,7 @@
     <link rel="stylesheet" href="/css/style.scss">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <!--<script src="/dist/descrambler.js"></script>-->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.show-answer').click(function () {
-                $(this).hide();
-                $('.answer-suggest .suggest').hide();
-                $('.answer-suggest .answer').fadeIn(300);
-                $('.next-question').fadeIn(300);
-            })
-        });
-    </script>
+    <script src="/main.js"></script>
 </head>
 <body>
 <header>
@@ -44,14 +35,16 @@
                         <img src="{{image}}"
                              alt="">
                     </div>
+                    <p class="explain" style="display: none">{{explain}}</p>
                     <div class="answer-suggest">
                         <p class="suggest">{{{suggest}}}</p>
-                        <p class="answer" style="display: none">{{{answer}}}</p>
+                        <p class="answer" style="display: none;">{{{answer}}}</p>
                     </div>
                     <button class="btn-proces-apply show-answer">Hiện đáp án</button>
                     {{#next}}
                     <button class="btn-proces-apply next-question" onclick="window.location='/question/{{next}}'"
-                            style="display: none">Câu hỏi tiếp
+                    style="display: none;"
+                    >Câu hỏi tiếp
                     </button>
                     {{/next}}
                 </div>

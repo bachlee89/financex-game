@@ -1632,5 +1632,12 @@ main .guess-game.home {
 }
 
 .word-icon img {
-    min-width: 680px;
+    min-width: 720px;
+}
+
+p.explain {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 20px 0 20px;
 }

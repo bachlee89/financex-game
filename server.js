@@ -78,6 +78,7 @@ app.get("/question/:id", function (req, res) {
     var params = {
         hasQuestion: false,
         image: question.image,
+        explain: question.explain,
         answer: answer,
         suggest: suggest,
     }
@@ -112,6 +113,18 @@ app.post("/play", async (req, res) => {
 
 app.post("/start", async (req, res) => {
     io.emit('start game', {});
+    res.send('Started!');
+
+});
+
+app.post("/answer", async (req, res) => {
+    io.emit('answer question', {});
+    res.send('Answer!');
+
+});
+
+app.post("/next", async (req, res) => {
+    io.emit('next question', {});
     res.send('Started!');
 
 });

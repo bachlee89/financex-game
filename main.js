@@ -9,9 +9,15 @@ $(document).ready(function () {
     var socket = io();
     var $start = $("button.btn-start-game");
     var $play = $("button.play");
-    var $confirm = $("button.swal2-confirm")
-    var started = false;
+    var $confirm = $("button.swal2-confirm");
+    var $answer = $("button.show-answer");
+    var $nextBtn = $("button.next-question");
+    var answered = false;
     var confirmed = false;
+    var started = false;
+    var next = false;
+
+
     $start.on("click", function () {
         started = true;
         $.post('/start', {})
@@ -19,8 +25,33 @@ $(document).ready(function () {
     $play.on("click", function () {
         $.post('/play', {type: $(this).val()})
     });
+
+    $answer.on("click", function () {
+        $.post('/answer', {})
+    });
+
+    socket.on('answer question', function (data) {
+        if (!answered) {
+            answered = true
+            $answer.click();
+        }
+    });
+    $nextBtn.on("click", function () {
+        $.post('/next', {})
+    });
+
+
+    socket.on('next question', function (data) {
+        if (!next) {
+            next = true;
+            console.log('next')
+            $nextBtn.click();
+        }
+    });
+
     socket.on('start game', function (data) {
         if (!started) {
+            started = true;
             $start.click();
         }
         $start.attr("disabled", true);
@@ -69,9 +100,23 @@ $(document).ready(function () {
     // Only visible play button on Ipad
     var is_iPad = navigator.userAgent.match(/iPad/i) != null;
     if (!is_iPad) {
-        // $play.hide();
-        // $('.jackpot.gift').css('padding-top', '50px');
+        $play.hide();
+        $answer.hide();
+        $nextBtn.hide();
+        $('.jackpot.gift').css('padding-top', '50px');
+    } else {
+        $('.word-icon img').css('min-width', '400px')
+        $('.word-icon img').css('max-width', '400px')
+        $('p.explain').show()
     }
+    $('.show-answer').click(function () {
+        $(this).hide();
+        $('.answer-suggest .suggest').hide();
+        $('.answer-suggest .answer').fadeIn(300);
+        if (is_iPad) {
+            $('.next-question').fadeIn(300);
+        }
+    })
 });
 
 
