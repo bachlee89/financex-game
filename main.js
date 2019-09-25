@@ -46,6 +46,7 @@ $(document).ready(function () {
             prize.scramble(5000, 20, "alphabet", true, update_winners, data);
         }
     });
+
     var update_winners = function (winner) {
         confirmed = false;
         var prize = {
@@ -62,6 +63,14 @@ $(document).ready(function () {
         $confirm.on("click", function () {
             $.post('/confirm', {})
         });
+    }
+
+
+    // Only visible play button on Ipad
+    var is_iPad = navigator.userAgent.match(/iPad/i) != null;
+    if (!is_iPad) {
+        $play.hide();
+        $('.jackpot.gift').css('padding-top', '50px');
     }
 });
 
