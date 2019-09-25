@@ -5,6 +5,7 @@ var basic = auth.basic({
     file: __dirname + "/htpasswd"
 });
 var pool = require('./database');
+var questions = require('./questions');
 var app = express();
 app.use(auth.connect(basic));
 var config = require('./config');
@@ -17,6 +18,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+var mustacheExpress = require('mustache-express');
+app.engine('html', mustacheExpress());
+app.set('view engine', 'html');
+app.set('views', __dirname);
+
 var util = require('util')
 var count = 0;
 let players = [];
@@ -43,7 +49,42 @@ app.get("/x-jackpot", function (req, res) {
 });
 
 app.get("/game", function (req, res) {
-    res.sendFile(__dirname + '/game.html');
+    res.render('game.html', {hasQuestion: false, yourdata: 'Hello from Mustache Template'});
+});
+
+app.get("/question/:id", function (req, res) {
+    var questionNumber = req.params.id - 1;
+    var nextQuestion = parseInt(req.params.id) + 1
+    var question = questions[questionNumber];
+    var answer = '';
+    for (var i = 0; i < question.answer.length; i++) {
+        if (question.answer[i] == ' ') {
+            answer += '<span class="space">' + question.answer[i] + '</span>';
+        } else {
+            answer += '<span>' + question.answer[i] + '</span>';
+        }
+    }
+    var suggest = '';
+    for (var i = 0; i < question.suggest.length; i++) {
+        if (question.suggest[i] == '*') {
+            question.suggest[i] = '';
+        }
+        if (question.suggest[i] == ' ') {
+            suggest += '<span class="space">' + question.suggest[i] + '</span>';
+        } else {
+            suggest += '<span>' + question.suggest[i] + '</span>';
+        }
+    }
+    var params = {
+        hasQuestion: false,
+        image: question.image,
+        answer: answer,
+        suggest: suggest,
+    }
+    if (nextQuestion <= questions.length) {
+        params['next'] = nextQuestion
+    }
+    res.render('question.html', params);
 });
 
 app.post("/play", async (req, res) => {

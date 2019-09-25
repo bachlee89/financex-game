@@ -69,8 +69,8 @@ $(document).ready(function () {
     // Only visible play button on Ipad
     var is_iPad = navigator.userAgent.match(/iPad/i) != null;
     if (!is_iPad) {
-        $play.hide();
-        $('.jackpot.gift').css('padding-top', '50px');
+        // $play.hide();
+        // $('.jackpot.gift').css('padding-top', '50px');
     }
 });
 

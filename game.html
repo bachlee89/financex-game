@@ -9,6 +9,13 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="/dist/descrambler.js"></script>
     <script src="main.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('main .guess-game').click(function () {
+                window.location = '/question/1';
+            })
+        });
+    </script>
 </head>
 <body class="guess-game">
 <header>
@@ -26,20 +33,9 @@
     </div>
 </header>
 <main>
-    <div class="guess-game">
+    <div class="guess-game home">
         <div class="mw-auto d-flex flex-column align-items-center row">
-            <div class="symbols-gifts">
-                <div class="item-gifts">
-                    <div class="word-icon">
-                        <img src="http://files.vforum.vn/2014/T10/img/vforum.vn-133676-10354607-757875150931403-1192449113540245939-n.jpg"
-                             alt="">
-                    </div>
-                    <div class="prize">
-                        <p class="jackpot">XXXXXXXX</p>
-                    </div>
-                    <button class="btn-proces-apply" value="jackpot">Hiện đáp án</button>
-                </div>
-            </div>
+
         </div>
     </div>
 </main>

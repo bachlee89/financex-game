@@ -327,7 +327,7 @@ section > .block {
 }
 
 .qr-code > .guide-icon {
-    padding: 15px;
+    padding: 0 15px;
 }
 
 .qr-code > .guide-icon img {
@@ -403,7 +403,7 @@ section > .block {
 .total-players {
     background: #ffffff;
     color: var(--color-light-main);
-    margin: 20px 10px 10px;
+    margin: 10px 10px 10px;
     width: 100%;
     border-radius: 10px;
 }
