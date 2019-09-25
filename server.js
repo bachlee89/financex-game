@@ -175,7 +175,7 @@ io.on('connection', function (socket) {
     console.log("A user is connected");
     get_player_data_from_api(function (res) {
         if (res) {
-            players = codes = [];
+            players = codes = winners = [];
             players = res;
             players.forEach(function (player) {
                 emails.push(player.email)
