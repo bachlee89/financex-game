@@ -4,7 +4,7 @@ var basic = auth.basic({
     realm: "Private Area.",
     file: __dirname + "/htpasswd"
 });
-
+var pool = require('./database');
 var app = express();
 app.use(auth.connect(basic));
 var config = require('./config');
@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-// var util = require('util')
+var util = require('util')
 var count = 0;
 let players = [];
 let winners = [];
@@ -56,6 +56,10 @@ app.post("/play", async (req, res) => {
                 email = player.email;
             }
         });
+        var payload = {prize: type, code: code, email: email, created_at: new Date()}
+        set_player_data(payload, function (res) {
+            console.log('Saved winner!')
+        })
         io.emit('update prize', {type: type, code: code, email: email});
         res.send('Success!');
     }
@@ -134,6 +138,7 @@ io.on('connection', function (socket) {
             players = res;
             players.forEach(function (player) {
                 emails.push(player.email)
+                codes.push(player.referralId)
             });
             console.log("refresh players");
             io.emit('refresh players', players);
@@ -163,6 +168,55 @@ var get_player_data_from_api = function (callback) {
         callback(players);
     });
 }
+
+var set_player_data = function (payload, callback) {
+    pool.getConnection(function (err, connection) {
+        if (err) {
+
+            callback(false);
+            return;
+        }
+        var query = connection.query("INSERT INTO `players` SET ? ", payload, function (err, result, fields) {
+            if (!err) {
+                callback(result);
+            }
+            else {
+                console.log(err)
+            }
+        });
+        connection.on('error', function (err) {
+            console.log(err)
+            callback(false);
+        });
+        if (connection) {
+            connection.release();
+        }
+    });
+    pool.query = util.promisify(pool.query)
+}
+
+var get_player_data = function (callback) {
+    pool.getConnection(function (err, connection) {
+        if (err) {
+            callback(false);
+            return;
+        }
+        connection.query("SELECT * FROM `players`", function (err, result, fields) {
+            if (!err) {
+                callback(result);
+            }
+        });
+        connection.on('error', function (err) {
+            callback(false);
+        });
+        if (connection) {
+            connection.release();
+        }
+    });
+    pool.query = util.promisify(pool.query)
+}
+
+
 server.listen(9999, function () {
     console.log("Listening on 9999");
 });
