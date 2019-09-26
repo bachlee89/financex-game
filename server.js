@@ -6,6 +6,7 @@ var basic = auth.basic({
 });
 var pool = require('./database');
 var questions = require('./questions');
+var fnx_questions = require('./fnx_questions');
 var app = express();
 app.use(auth.connect(basic));
 var config = require('./config');
@@ -50,6 +51,29 @@ app.get("/x-jackpot", function (req, res) {
 
 app.get("/game", function (req, res) {
     res.render('game.html', {hasQuestion: false, yourdata: 'Hello from Mustache Template'});
+});
+
+app.get("/financex/:id", function (req, res) {
+    var questionNumber = req.params.id - 1;
+    var nextQuestion = parseInt(req.params.id) + 1;
+    var question = fnx_questions[questionNumber];
+    var options = '';
+    Object.keys(question.options).forEach(function (k) {
+        var extra_class = ''
+        if (k == question.answer) {
+            extra_class = 'correct';
+        }
+        options += '<li class="option ' + extra_class + '" id="option_' + k + '">' + question.options[k] + '</li>'
+    });
+    var params = {
+        question: question.question,
+        options: options,
+        answer: question.options[question.answer],
+    }
+    if (nextQuestion <= fnx_questions.length) {
+        params['next'] = nextQuestion
+    }
+    res.render('financex.html', params);
 });
 
 app.get("/question/:id", function (req, res) {

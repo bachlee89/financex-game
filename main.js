@@ -107,6 +107,7 @@ $(document).ready(function () {
     } else {
         $('.word-icon img').css('min-width', '400px')
         $('.word-icon img').css('max-width', '400px')
+        $('.answer-mc').show()
         $('p.explain').show()
     }
     $('.show-answer').click(function () {
@@ -116,6 +117,7 @@ $(document).ready(function () {
         if (is_iPad) {
             $('.next-question').fadeIn(300);
         }
+        $('li.correct').css('background', 'red')
     })
 });
 
