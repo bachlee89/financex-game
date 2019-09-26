@@ -98,7 +98,7 @@ $(document).ready(function () {
 
 
     // Only visible play button on Ipad
-    var is_iPad = navigator.userAgent.match(/iPad/i) != null;
+    var is_iPad = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
     if (!is_iPad) {
         $play.hide();
         $answer.hide();
