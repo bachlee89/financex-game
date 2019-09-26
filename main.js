@@ -74,7 +74,7 @@ $(document).ready(function () {
             prize.scramble(40000, 20, "alphabet", true, update_winners, data);
         }
         else {
-            prize.scramble(5000, 20, "alphabet", true, update_winners, data);
+            prize.scramble(15000, 20, "alphabet", true, update_winners, data);
         }
     });
 
