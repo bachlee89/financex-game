@@ -7,17 +7,17 @@ const fnx_questions = [
             3: '15 năm',
             4: '20 năm',
         },
-        'answer': 1
+        'answer': 2
     },
     {
-        'question': 'Sàn giao dịch FinanceX tại Việt Nam ra mắt vào thời gian nào?(Đáp án ở ngay trên tay bạn đó)',
+        'question': 'FinanceX được thành lập vào thời gian nào?(Đáp án ở ngay trên tay bạn đó)',
         'options': {
             1: 'Tháng 4/2018',
             2: 'Tháng 5/2018',
             3: 'Tháng 6/2018',
             4: 'Tháng 8/2018',
         },
-        'answer': 1
+        'answer': 4
     },
     {
         'question': 'FinanceX đang có những sản phẩm và dịch vụ nào?',
