@@ -1,15 +1,17 @@
 var express = require("express")
 var auth = require("http-auth");
+var config = require('./config');
 var basic = auth.basic({
     realm: "Private Area.",
     file: __dirname + "/htpasswd"
+}, function (username, password, callback) {
+    callback(username == config.username && password == config.password);
 });
 var pool = require('./database');
 var questions = require('./questions');
 var fnx_questions = require('./fnx_questions');
 var app = express();
 app.use(auth.connect(basic));
-var config = require('./config');
 var http = require('http');
 var server = http.Server(app)
 var io = require("socket.io").listen(server);
