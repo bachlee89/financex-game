@@ -295,13 +295,13 @@ var set_player_data = function (payload, callback) {
     pool.query = util.promisify(pool.query)
 }
 
-var get_player_data = function (callback) {
+var get_winners = function (callback) {
     pool.getConnection(function (err, connection) {
         if (err) {
             callback(false);
             return;
         }
-        connection.query("SELECT * FROM `players`", function (err, result, fields) {
+        connection.query("SELECT * FROM `winners`", function (err, result, fields) {
             if (!err) {
                 callback(result);
             }
@@ -317,6 +317,6 @@ var get_player_data = function (callback) {
 }
 
 
-server.listen(9999, function () {
+server.listen(9999,'', function () {
     console.log("Listening on 9999");
 });

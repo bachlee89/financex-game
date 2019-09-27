@@ -1,6 +1,16 @@
 const fnx_questions = [
     {
-        'question': 'Đố bạn biết đồng tiền mã hóa Bitcoin đã trải qua bao nhiêu năm thăng trầm?',
+        'question': 'Ai là người đã tạo ra Bitcoin?',
+        'options': {
+            1: 'Gavin Andresen',
+            2: 'Satoshi Nakamoto',
+            3: 'Dorian Nakamoto',
+            4: 'Paul Krugman',
+        },
+        'answer': 2
+    },
+    {
+        'question': 'Bitcoin đã trải qua bao nhiêu năm thăng trầm?',
         'options': {
             1: '5 năm',
             2: '10 năm',
@@ -10,43 +20,14 @@ const fnx_questions = [
         'answer': 2
     },
     {
-        'question': 'FinanceX được thành lập vào thời gian nào?(Đáp án ở ngay trên tay bạn đó)',
-        'options': {
-            1: 'Tháng 4/2018',
-            2: 'Tháng 5/2018',
-            3: 'Tháng 6/2018',
-            4: 'Tháng 8/2018',
-        },
-        'answer': 4
-    },
-    {
-        'question': 'FinanceX đang có những sản phẩm và dịch vụ nào?',
+        'question': 'Những sản phẩm và dịch vụ của FinanceX là gì?',
         'options': {
             1: 'Liên sàn giao dịch hỗ trợ Fiat',
-            2: 'Dịch vụ và giải pháp phần phầm',
+            2: 'Dịch vụ và giải pháp phần mềm cho doanh nghiệp',
             3: 'Đào tạo Labs và Blockchain Dapp',
             4: 'Tất cả các phương án trên',
         },
         'answer': 4
-    },
-
-    {
-        'question': 'Phí giao dịch trên sàn FinanceX là bao nhiêu?',
-        'options': {
-            1: '1%',
-            2: '0.5%',
-            3: '0.4%',
-            4: '0.3%',
-        },
-        'answer': 4
-    },
-    {
-        'question': 'FinanceX có cho phép chuyển VND từ tài khoản này sang tài khoản khác không?',
-        'options': {
-            1: 'Có',
-            2: 'Không',
-        },
-        'answer': 1
     },
 ];
 

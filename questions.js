@@ -20,7 +20,7 @@ const questions = [
     {
         'image': '/images/questions/question-4.jpg',
         'answer': 'thanh khoản',
-        'suggest': 't**nh k***',
+        'suggest': 't**nh k****',
         'explain': 'Chỉ mức độ mà một tài sản bất kì có thể được mua hoặc bán trên thị trường mà không làm ảnh hưởng nhiều đến giá thị trường của tài sản đó'
     },
     {
