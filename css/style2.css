@@ -586,9 +586,9 @@ section > .block {
 }
 
 @media only screen and (max-device-width: 480px){
-    .jackpot-item {
-        min-width: 60%;
-    }
+    /*.jackpot-item {*/
+        /*min-width: 60%;*/
+    /*}*/
 
     .btn-proces-apply {
         padding: 40px 60px;
