@@ -816,7 +816,6 @@ main > div {
 /* term */
 .term {
     width: 100%;
-    background-image: url('img/listing-07.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1085,7 +1084,6 @@ footer > .network {
 .join-out > a > span {
     width: 15px;
     height: 15px;
-    background-image: url('img/listing-18.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -1633,9 +1631,14 @@ main .guess-game.home {
 
 .word-icon img {
     max-width: 550px;
-    background: linear-gradient(to right, red, blue);
+    background: linear-gradient(to right, #ff0000, blue);
     padding: 3px;
     border-radius: 5px;
+}
+
+.word-icon img.the-end {
+    background: none;
+    margin-top: 50px;
 }
 
 p.explain {
@@ -1676,7 +1679,8 @@ p.answer {
     font-weight: bold;
     font-size: 20px;
 }
-p.answer-mc{
+
+p.answer-mc {
     text-align: center;
     color: red;
     font-size: 20px;

@@ -49,6 +49,7 @@ app.use('/images/questions/question-5.jpg', express.static('images/questions/que
 app.use('/images/questions/question-6.jpg', express.static('images/questions/question-6.jpg'));
 app.use('/images/questions/question-7.jpg', express.static('images/questions/question-7.jpg'));
 app.use('/images/questions/question-8.jpg', express.static('images/questions/question-8.jpg'));
+app.use('/images/questions/the-end.jpg', express.static('images/questions/the-end.png'));
 
 app.use('/main.js', express.static('main.js'));
 app.use('/dist/descrambler.js', express.static('dist/descrambler.js'));
@@ -94,26 +95,30 @@ app.get("/question/:id", function (req, res) {
     var nextQuestion = parseInt(req.params.id) + 1
     var question = questions[questionNumber];
     var answer = '';
-    for (var i = 0; i < question.answer.length; i++) {
-        if (question.answer[i] == ' ') {
-            answer += '<span class="space">' + question.answer[i] + '</span>';
-        } else {
-            answer += '<span>' + question.answer[i] + '</span>';
+    var has_question = !question.theend;
+    if (has_question) {
+        for (var i = 0; i < question.answer.length; i++) {
+            if (question.answer[i] == ' ') {
+                answer += '<span class="space">' + question.answer[i] + '</span>';
+            } else {
+                answer += '<span>' + question.answer[i] + '</span>';
+            }
         }
-    }
-    var suggest = '';
-    for (var i = 0; i < question.suggest.length; i++) {
-        if (question.suggest[i] == '*') {
-            question.suggest[i] = '';
-        }
-        if (question.suggest[i] == ' ') {
-            suggest += '<span class="space">' + question.suggest[i] + '</span>';
-        } else {
-            suggest += '<span>' + question.suggest[i] + '</span>';
+        var suggest = '';
+        for (var i = 0; i < question.suggest.length; i++) {
+            if (question.suggest[i] == '*') {
+                question.suggest[i] = '';
+            }
+            if (question.suggest[i] == ' ') {
+                suggest += '<span class="space">' + question.suggest[i] + '</span>';
+            } else {
+                suggest += '<span>' + question.suggest[i] + '</span>';
+            }
         }
     }
     var params = {
-        hasQuestion: false,
+        hasQuestion: !question.theend,
+        theEnd: question.theend,
         image: question.image,
         explain: question.explain,
         answer: answer,

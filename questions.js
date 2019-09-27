@@ -46,6 +46,10 @@ const questions = [
         'answer': 'ví lạnh',
         'suggest': 'v* ***h',
         'explain': 'Được sử dụng để lưu trữ Bitcoin ngoại tuyến'
+    },
+    {
+        'image': '/images/questions/the-end.jpg',
+        'theend': true,
     }
 ];
 

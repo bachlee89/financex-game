@@ -32,9 +32,10 @@
             <div class="symbols-gifts">
                 <div class="item-gifts">
                     <div class="word-icon">
-                        <img src="{{image}}"
+                        <img src="{{image}}" class="{{#theEnd}}the-end{{/theEnd}}"
                              alt="">
                     </div>
+                    {{#hasQuestion}}
                     <p class="explain" style="display: none">{{explain}}</p>
                     <div class="answer-suggest">
                         <p class="suggest">{{{suggest}}}</p>
@@ -47,6 +48,7 @@
                     >Câu hỏi tiếp
                     </button>
                     {{/next}}
+                    {{/hasQuestion}}
                 </div>
             </div>
         </div>
