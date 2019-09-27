@@ -236,10 +236,11 @@ button.menu-toggler > span::after {
 }
 
 .title-item {
-    color: var(--color-cyan);
-    font-size: calc(8px + 1vmin);
+    color: #ffffff;
+    font-size: 25px;
     white-space: nowrap;
     margin: 10px 0;
+    font-weight: bold;
 }
 
 section > .block {
