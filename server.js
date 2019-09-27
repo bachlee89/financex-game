@@ -184,6 +184,10 @@ app.get("/app", async (req, res) => {
 
 function get_prize() {
     var index = get_random_index(codes);
+    if (winners.length == players.length) {
+        winners = []
+        return get_prize();
+    }
     if (winners.indexOf(index) !== -1) {
         return get_prize();
     }
@@ -230,7 +234,7 @@ io.on('connection', function (socket) {
     console.log("A user is connected");
     get_player_data_from_api(function (res) {
         if (res) {
-            players = codes = winners = [];
+            players = codes = [];
             players = res;
             players.forEach(function (player) {
                 emails.push(player.email)

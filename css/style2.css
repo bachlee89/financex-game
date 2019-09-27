@@ -582,9 +582,17 @@ section > .block {
     .gift {
         padding-top: 76px;
     }
+}
 
+@media only screen and (max-device-width: 480px){
     .jackpot-item {
-        max-width: 320px;
+        min-width: 60%;
+    }
+
+    .btn-proces-apply {
+        padding: 40px 60px;
+        font-size: 30px;
+        font-weight: bold;
     }
 }
 
