@@ -1168,7 +1168,7 @@ footer > .network {
         width: 100%;
         max-width: 1200px;
         height: 1px;
-        background-color: #565c8d;
+        /*background-color: #565c8d;*/
     }
 
     .menu-navbar {
