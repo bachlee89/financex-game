@@ -37,6 +37,17 @@ app.use('/images/qr-code.png', express.static('images/qr-code.png'));
 app.use('/images/demo-game.gif', express.static('images/demo-game.gif'));
 app.use('/images/amazfit-bip.jpg', express.static('images/amazfit-bip.jpg'));
 app.use('/images/mi-band-4.jpg', express.static('images/mi-band-4.jpg'));
+
+// Questions Images
+app.use('/images/questions/question-1.jpg', express.static('images/questions/question-1.jpg'));
+app.use('/images/questions/question-2.jpg', express.static('images/questions/question-2.jpg'));
+app.use('/images/questions/question-3.jpg', express.static('images/questions/question-3.jpg'));
+app.use('/images/questions/question-4.jpg', express.static('images/questions/question-4.jpg'));
+app.use('/images/questions/question-5.jpg', express.static('images/questions/question-5.jpg'));
+app.use('/images/questions/question-6.jpg', express.static('images/questions/question-6.jpg'));
+app.use('/images/questions/question-7.jpg', express.static('images/questions/question-7.jpg'));
+app.use('/images/questions/question-8.jpg', express.static('images/questions/question-8.jpg'));
+
 app.use('/main.js', express.static('main.js'));
 app.use('/dist/descrambler.js', express.static('dist/descrambler.js'));
 app.use('/css/style2.css', express.static('css/style2.css'));

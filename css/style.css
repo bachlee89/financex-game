@@ -1632,7 +1632,10 @@ main .guess-game.home {
 }
 
 .word-icon img {
-    min-width: 720px;
+    max-width: 550px;
+    background: linear-gradient(to right, red, blue);
+    padding: 3px;
+    border-radius: 5px;
 }
 
 p.explain {
