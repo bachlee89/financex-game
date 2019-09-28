@@ -81,13 +81,14 @@ $(document).ready(function () {
     var update_winners = function (winner) {
         confirmed = false;
         var prize = {
-            jackpot: "Jackpot 1 -  Apple Watch",
-            first: "Jackpot 2 - Amzfit Bip ",
-            second: "Jackpot 3 - Miband 4",
+            jackpot: "Jackpot -  Apple Watch",
+            first: "Giải nhất - Ví lạnh",
+            second: "Giải nhì - Amazfit",
+            third: "Giải ba - Miband",
         }
         Swal.fire(
             'Xin chúc mừng <br />' + hide4DigitsEmail(winner.email) + '!',
-            'Đã trúng giải ' + prize[winner.type] + '!',
+            'Đã trúng giải ' + prize[winner.type] + ' với mã số '+winner.code+'!',
             'success'
         )
         $confirm = $("button.swal2-confirm")
