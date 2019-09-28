@@ -39,6 +39,7 @@ app.use('/images/qr-code.png', express.static('images/qr-code.png'));
 app.use('/images/demo-game.gif', express.static('images/demo-game.gif'));
 app.use('/images/amazfit-bip.jpg', express.static('images/amazfit-bip.jpg'));
 app.use('/images/mi-band-4.jpg', express.static('images/mi-band-4.jpg'));
+app.use('/images/vi-lanh.jpg', express.static('images/vi-lanh.jpg'));
 
 // Questions Images
 app.use('/images/questions/question-1.jpg', express.static('images/questions/question-1.jpg'));

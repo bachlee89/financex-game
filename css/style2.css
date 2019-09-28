@@ -612,12 +612,12 @@ section > .block {
 
     /*  */
     .jackpot-item {
-        -webkit-flex: 1 1 33.3%;
-        -moz-flex: 1 1 33.3%;
-        -ms-flex: 1 1 33.3%;
-        -o-flex: 1 1 33.3%;
-        flex: 1 1 33.3%;
-        max-width: 33.3%;
+        -webkit-flex: 1 1 25%;
+        -moz-flex: 1 1 25%;
+        -ms-flex: 1 1 25%;
+        -o-flex: 1 1 25%;
+        flex: 1 1 25%;
+        max-width: 25%;
         padding: 15px;
     }
 
