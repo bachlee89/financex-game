@@ -8,7 +8,7 @@ const questions = [
     {
         'image': '/images/questions/question-2.jpg',
         'answer': 'ẩn danh',
-        'suggest': 'ẩ* d**h',
+        'suggest': '*n d***',
         'explain': 'Mọi thông tin khách hàng đều được giữ kín, không thể truy tìm'
     },
     {

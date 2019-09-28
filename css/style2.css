@@ -265,6 +265,7 @@ section > .block {
     flex-wrap: wrap;
     justify-content: space-around;
     overflow: hidden;
+    padding-bottom: 130px;
 }
 
 .jackpot-item {
@@ -334,7 +335,7 @@ section > .block {
 .qr-code > .guide-icon img {
     background-color: #fff;
     border-radius: 2rem;
-    -webkit-box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.6);a
     box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.6);
 }
 
